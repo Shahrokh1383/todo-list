@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Todo List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/app.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fa fa-user-circle"></i>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name" id="username-display">Guest User</span>
+                        <button id="logout-btn" class="logout-btn">Exit</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="sidebar-title">Folders</h2>
+            <div class="folder-input-container">
+                <input type="text" id="folder-input" placeholder="New folder name...">
+                <button id="add-folder-btn"><i class="fas fa-plus"></i></button>
+            </div>
+            <ul class="folder-list" id="folder-list">
+                <li>Loading folders...</li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1 id="current-folder">All Tasks</h1>
+                <div class="stats">
+                    <span id="task-count">0 tasks</span>
+                    <span id="completed-count">0 completed</span>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <input type="text" id="todo-input" placeholder="What do you need to do today?">
+                <button id="add-task-btn" class="btn-primary">Add Task</button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+
+            <div class="auth-message error-message" id="error-message" style="display: none;"></div>
+            <div class="auth-message success-message" id="success-message" style="display: none;"></div>
+
+            <ul class="todo-list" id="todo-list">
+            </ul>
+        </div>
+    </div>
+    
+    <script src="./assets/js/auth.js" type="module"></script>
+    <script src="./assets/js/app.js" type="module"></script> 
+
+    <script type="module">
+        import { initializeAuth } from './assets/js/auth.js';
+       
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('DOMContentLoaded fired on index.html');
+
+            try {
+                
+                const authStatus = await initializeAuth(); 
+                
+                
+                if (authStatus.authenticated) {
+                    if (typeof App !== 'undefined' && App.init) {
+                         App.init(); // Initialize the main application logic
+                    } else {
+                        console.error("App object not found or App.init() not available. Ensure app.js defines a global 'App' or exports it.");
+                        showAlert('Application initialization failed: Core app functions not found.', false);
+                    }
+                } else {
+                    console.log("User not authenticated, initializeAuth should redirect to login.html.");
+                }
+
+            } catch (error) {
+                console.error('Error during index.html initialization:', error);
+                showAlert('Failed to initialize application. Please try again.', false);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+/* assets/css/app.css */
+
+:root {
+    /* Color variables from auth.css */
+    --primary-color: #6a0572;
+    --secondary-color: #ab00c3;
+    --accent-color: #ff5722;
+    --danger-color: #e53935;
+    --light-bg: #f9f9f9;
+    --dark-text: #333333;
+    --medium-text: #666666;
+    --border-color: #e0e0e0;
+    --border-radius: 12px;
+    --box-shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --box-shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Additional variables for app */
+    --sidebar-width: 280px;
+    --header-height: 80px;
+    --sidebar-bg: #2a0a2e;
+    --sidebar-text: rgba(255, 255, 255, 0.9);
+    --sidebar-hover: rgba(106, 5, 114, 0.5);
+    --sidebar-active: var(--primary-color);
+    --task-item-bg: white;
+    --task-completed: #f0f0f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 30px 20px;
+    position: fixed;
+    height: 100vh;
+    transition: var(--transition);
+    z-index: 100;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    width: fit-content;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 25px 0 15px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.folder-input-container {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+#folder-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 0.95rem;
+}
+
+#folder-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#folder-input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+#add-folder-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 15px 0 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 40px; 
+    gap: 8px;
+}
+
+#add-folder-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+#add-folder-btn i {
+    font-size: 1rem; 
+    transition: var(--transition);
+}
+
+#add-folder-btn:hover i {
+    transform: scale(1.1); 
+}
+
+.folder-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.folder-list li {
+    padding: 12px 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.folder-list li:hover {
+    background-color: var(--sidebar-hover);
+}
+
+.folder-list li.active {
+    background-color: var(--sidebar-active);
+    color: white;
+    font-weight: 500;
+}
+
+.folder-list li .folder-actions {
+    display: none;
+}
+
+.folder-list li:hover .folder-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.folder-list li .folder-actions button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.folder-list li .folder-actions button:hover {
+    color: white;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 30px;
+    transition: var(--transition);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    color: var(--medium-text);
+    font-size: 0.9rem;
+}
+
+.input-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+#todo-input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    box-shadow: var(--box-shadow-light);
+}
+
+#todo-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(106, 5, 114, 0.2);
+}
+
+.btn-primary {
+    padding: 15px 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(106, 5, 114, 0.3);
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(106, 5, 114, 0.4);
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    color: var(--medium-text);
+}
+
+.filter-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.todo-list {
+    list-style: none;
+}
+
+.todo-item {
+    background-color: var(--task-item-bg);
+    padding: 18px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    box-shadow: var(--box-shadow-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.todo-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.todo-item.completed {
+    background-color: var(--task-completed);
+}
+
+.todo-checkbox {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 1rem;
+    word-break: break-word;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--medium-text);
+}
+
+.todo-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: 15px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.todo-item:hover .todo-actions {
+    opacity: 1;
+}
+
+.todo-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--medium-text);
+    transition: var(--transition);
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.todo-actions button:hover {
+    color: var(--primary-color);
+    background-color: rgba(106, 5, 114, 0.1);
+}
+
+.todo-actions button.delete-btn:hover {
+    color: var(--danger-color);
+    background-color: rgba(229, 57, 53, 0.1);
+}
+
+.todo-item .due-date {
+    font-size: 0.8rem;
+    color: var(--medium-text);
+    margin-left: 15px;
+    background-color: rgba(106, 5, 114, 0.1);
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.todo-item.overdue .due-date {
+    color: var(--danger-color);
+    background-color: rgba(229, 57, 53, 0.1);
+}
+
+/* Priority indicators */
+.todo-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: transparent;
+    transition: var(--transition);
+}
+
+.todo-item.priority-low::before {
+    background-color: #4CAF50;
+}
+
+.todo-item.priority-medium::before {
+    background-color: #FFC107;
+}
+
+.todo-item.priority-high::before {
+    background-color: #FF5722;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--medium-text);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--border-color);
+    margin-bottom: 20px;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* Animation for new items */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.todo-item {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(106, 5, 114, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(106, 5, 114, 0.5);
+}

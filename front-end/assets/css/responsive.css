@@ -1,0 +1,152 @@
+/* assets/css/responsive.css */
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 240px;
+        padding: 20px 15px;
+    }
+    
+    .main-content {
+        margin-left: 240px;
+        padding: 25px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .input-section {
+        flex-direction: column;
+    }
+    
+    .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .user-info {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .user-details {
+        align-items: center;
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .folder-list li .folder-actions {
+        display: flex;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --border-radius: 10px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .todo-item {
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .todo-checkbox {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .todo-actions {
+        margin-left: 0;
+        margin-top: 10px;
+        opacity: 1;
+        align-self: flex-end;
+    }
+    
+    .todo-item .due-date {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+    
+    .filters {
+        flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+        flex: 1;
+        min-width: calc(33.333% - 7px);
+        text-align: center;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light-bg: #121212;
+        --dark-text: #e0e0e0;
+        --medium-text: #a0a0a0;
+        --border-color: #333333;
+        --sidebar-bg: #1a031e;
+        --sidebar-text: rgba(255, 255, 255, 0.9);
+        --task-item-bg: #1e1e1e;
+        --task-completed: #2a2a2a;
+    }
+    
+    .auth-container {
+        background-color: #1e1e1e;
+    }
+    
+    .input-with-icon input {
+        background-color: #2a2a2a;
+        color: var(--dark-text);
+        border-color: var(--border-color);
+    }
+    
+    #todo-input {
+        background-color: #2a2a2a;
+        color: var(--dark-text);
+        border-color: var(--border-color);
+    }
+    
+    #folder-input {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .filter-btn {
+        border-color: var(--border-color);
+    }
+}

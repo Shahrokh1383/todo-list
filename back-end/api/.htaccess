@@ -1,0 +1,13 @@
+# back-end/api/.htaccess
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Set the base URL for rewriting.
+    RewriteBase /test/back-end/api/
+
+    # Allow all requests to pass through to index.php unless they are for actual files or directories.
+    # CORS OPTIONS requests are handled in index.php for better control over headers and response.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
