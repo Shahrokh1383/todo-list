@@ -86,11 +86,9 @@ Prerequisites
 Steps
 
     Clone the Repository:
-    First, clone this repository into your web server's document root (e.g., htdocs for XAMPP, or www for WAMP). It's recommended to name your project folder test to align with the default configurations in the code, but you can choose another name.
+    First, clone this repository into your web server's document root (e.g., htdocs for XAMPP, or www for WAMP). It's recommended to name your project folder test to align with the default configurations in the code, note : always use name : test, for the route folder.
 
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git C:/xampp/htdocs/test
-    # Alternatively, you can choose a different path/name:
-    # git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git C:/xampp/htdocs/YourProjectName
+    git clone https://github.com/Shahrokh1383/todo-list
 
     Important Note: If you choose a project folder name other than test (e.g., MyTodoListApp), you must update the base path variables in your code accordingly (API_BASE_URL in front-end/assets/js/app.js and front-end/assets/js/auth.js, $basePath in back-end/api/index.php, and RewriteBase in back-end/api/.htaccess). For example, change /test/back-end/api to /MyTodoListApp/back-end/api.
 
@@ -134,7 +132,7 @@ Steps
 
         Open your web browser and navigate to the following address:
         http://localhost/test/login.html
-        (If you changed the folder name, replace test with your actual project folder name.)
+        (The folder's name should remain test all the time)
 
         You should now be able to register and log in to the application.
 
