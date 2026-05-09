@@ -1,5 +1,5 @@
 /* ============================================
-   TOAST.CSS - Enterprise Toast Notifications
+   TOAST.CSS - Enterprise Toast Notifications (UI-Prefixed)
    ============================================ */
 :root {
   --toast-success-bg: rgba(76, 175, 80, 0.95);
@@ -12,11 +12,11 @@
 }
 
 /* Container – fixed bottom‑right */
-.toast-container {
+.ui-toast-container {
   position: fixed;
   bottom: 25px;
   right: 25px;
-  z-index: 5000; /* above modals */
+  z-index: 5000;
   display: flex;
   flex-direction: column-reverse;
   gap: 12px;
@@ -24,7 +24,7 @@
 }
 
 /* Individual Toast */
-.toast {
+.ui-toast {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -39,26 +39,27 @@
   animation: toastSlideIn 0.4s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
   border-left: 5px solid var(--primary-color);
   position: relative;
+  opacity: 1;
 }
 
 /* Color variants */
-.toast.toast-success { border-left-color: var(--success-color); }
-.toast.toast-error { border-left-color: var(--danger-color); }
-.toast.toast-warning { border-left-color: var(--warning-color); }
-.toast.toast-info { border-left-color: var(--info-color); }
+.ui-toast.ui-toast-success { border-left-color: var(--success-color); }
+.ui-toast.ui-toast-error { border-left-color: var(--danger-color); }
+.ui-toast.ui-toast-warning { border-left-color: var(--warning-color); }
+.ui-toast.ui-toast-info { border-left-color: var(--info-color); }
 
-/* Icon area */
-.toast-icon {
+/* Icon */
+.ui-toast-icon {
   font-size: 1.3rem;
   flex-shrink: 0;
 }
-.toast-success .toast-icon { color: var(--success-color); }
-.toast-error .toast-icon { color: var(--danger-color); }
-.toast-warning .toast-icon { color: var(--warning-color); }
-.toast-info .toast-icon { color: var(--info-color); }
+.ui-toast-success .ui-toast-icon { color: var(--success-color); }
+.ui-toast-error .ui-toast-icon { color: var(--danger-color); }
+.ui-toast-warning .ui-toast-icon { color: var(--warning-color); }
+.ui-toast-info .ui-toast-icon { color: var(--info-color); }
 
 /* Message */
-.toast-message {
+.ui-toast-message {
   flex: 1;
   font-size: 0.9rem;
   line-height: 1.4;
@@ -66,7 +67,7 @@
 }
 
 /* Close button */
-.toast-close {
+.ui-toast-close {
   background: none;
   border: none;
   color: var(--text-muted);
@@ -76,11 +77,11 @@
   transition: color 0.2s;
   margin-left: auto;
 }
-.toast-close:hover {
+.ui-toast-close:hover {
   color: var(--danger-color);
 }
 
-/* Slide in animation */
+/* Animations (global - no prefix needed, but keep them) */
 @keyframes toastSlideIn {
   from {
     opacity: 0;
@@ -92,8 +93,7 @@
   }
 }
 
-/* Exit animation (applied via JS) */
-.toast.exit {
+.ui-toast.ui-exit {
   animation: toastSlideOut 0.3s ease-in forwards;
 }
 @keyframes toastSlideOut {
@@ -109,12 +109,12 @@
 
 /* Responsive */
 @media (max-width: 576px) {
-  .toast-container {
+  .ui-toast-container {
     right: 10px;
     left: 10px;
     bottom: 10px;
   }
-  .toast {
+  .ui-toast {
     min-width: auto;
     max-width: 100%;
   }

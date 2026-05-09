@@ -2,7 +2,7 @@ import Toast from './Toast';
 
 const ToastContainer = ({ toasts, onClose }) => {
   return (
-    <div className="toast-container">
+    <div className="ui-toast-container">
       {toasts.map(toast => (
         <Toast
           key={toast.id}

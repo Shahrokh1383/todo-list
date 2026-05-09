@@ -9,7 +9,7 @@ def generate_road_map():
     all_paths = []
     
     # List of directories to exclude
-    exclude_dirs = ['venv', '.git', 'vendor', 'node_modules', '__pycache__', '.idea', '.vscode']
+    exclude_dirs = ['venv', '.git', 'vendor', 'node_modules', '__pycache__', '.idea', '.vscode', 'FontAwesome', 'bootstrap-pack']
     
     # Recursively traverse the directory structure
     for root, dirs, files in os.walk(project_root, topdown=True):
@@ -51,7 +51,7 @@ def generate_road_map():
 
 def display_excluded_dirs():
     """Display the list of excluded directories"""
-    exclude_dirs = ['venv', '.git', 'vendor', 'node_modules', '__pycache__', '.idea', '.vscode']
+    exclude_dirs = ['venv', '.git', 'vendor', 'node_modules', '__pycache__', '.idea', '.vscode', 'FontAwesome', 'bootstrap-pack']
     print("✓ Excluded directories:")
     for dir_name in exclude_dirs:
         print(f"  - {dir_name}")

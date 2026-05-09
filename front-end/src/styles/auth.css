@@ -35,7 +35,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Force font reset to prevent inheritance issues */
     font-family: 'Inter', sans-serif !important;
     margin: 0;
 }
@@ -50,22 +49,6 @@ body {
     justify-content: center;
     flex-direction: column;
     overflow: visible !important; /* override overflow:hidden */
-}
-
-/* ============================================
-   Font Awesome FIX – force correct font family
-   ============================================ */
-.fas, .far, .fab, .fa, .fa-solid, .fa-regular, .fa-brands {
-    font-family: "Font Awesome 6 Free" !important;
-    font-weight: 900 !important; /* Solid icons weight */
-    /* Reset any inherited styles */
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: inline-block;
 }
 
 /* Specific fix for regular icons if used */

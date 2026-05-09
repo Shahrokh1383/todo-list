@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import Modal from '../components/ui/Modal';
 import { compressImage, validateImage } from '../utils/imageCompression';
-import { getDefaultAvatar } from '../utils/defaultAvatar';
+import { getDefaultAvatar, generateSVGAvatar } from '../utils/defaultAvatar';
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -126,7 +126,7 @@ export const Profile = () => {
       setUploadState(prev => ({ ...prev, progress: 0 }));
       
       // Rollback optimistic update
-      setPreviewImage(previousAvatar || getDefaultAvatar(user?.username));
+      setPreviewImage(previousAvatar || generateSVGAvatar(user?.username));
       
       addToast(err.message || 'Failed to upload image', 'error');
     } finally {
@@ -140,7 +140,7 @@ export const Profile = () => {
     const result = await deleteAvatar();
 
     if (result.success) {
-      setPreviewImage(getDefaultAvatar(user?.username));
+      setPreviewImage(generateSVGAvatar(user?.username));
       addToast('Profile picture deleted.', 'info');
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
@@ -183,7 +183,7 @@ export const Profile = () => {
     if (previewImage) {
       return previewImage;
     }
-    return getDefaultAvatar(user?.username);
+    return generateSVGAvatar(user?.username);
   };
 
   return (

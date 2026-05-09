@@ -14,7 +14,6 @@ const apiClient = axios.create({
   withCredentials: true,
 });
 
-// ✅ SECURITY FIX: Retry Logic for Network Errors
 axiosRetry(apiClient, {
   retries: 3,
   retryDelay: axiosRetry.exponentialDelay,

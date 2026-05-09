@@ -9,10 +9,10 @@ const iconMap = {
 
 const Toast = ({ id, message, type, exiting, onClose }) => {
   return (
-    <div className={`toast toast-${type} ${exiting ? 'exit' : ''}`}>
-      <i className={`fas ${iconMap[type] || 'fa-info-circle'} toast-icon`}></i>
-      <span className="toast-message">{message}</span>
-      <button className="toast-close" onClick={onClose} aria-label="Close notification">
+    <div className={`ui-toast ui-toast-${type} ${exiting ? 'ui-exit' : ''}`}>
+      <i className={`fas ${iconMap[type] || 'fa-info-circle'} ui-toast-icon`}></i>
+      <span className="ui-toast-message">{message}</span>
+      <button className="ui-toast-close" onClick={onClose} aria-label="Close notification">
         <i className="fas fa-times"></i>
       </button>
     </div>

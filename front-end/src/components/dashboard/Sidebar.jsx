@@ -4,7 +4,7 @@ import { useTodo } from '../../context/TodoContext';
 import { useAuth } from '../../context/AuthContext';
 import Modal from '../ui/Modal';
 import Dropdown from '../ui/Dropdown';
-import { getDefaultAvatar } from '../../utils/defaultAvatar';
+import { getDefaultAvatar, generateSVGAvatar } from '../../utils/defaultAvatar';
 
 export const Sidebar = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -100,7 +100,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
     await logout();
   };
 
-  const avatarSrc = user?.avatar || getDefaultAvatar(user?.username);
+  const avatarSrc = user?.avatar || generateSVGAvatar(user?.username);
 
   return (
     <>
